@@ -19,12 +19,18 @@ Explin API.
     + city (optional, string, `San Francisco,Atlanta,New York`) ... Key Pair Value Array
 
 ### Get Products [GET]
++ Request
 
+    + Headers
+    
+            Authorization: Basic ABCDEF
+        
 + Response 200 (application/json)
 
     + Headers
     
             ETag: "34ad82f6b67967518c3d69e99f503ecf"
+            Cookie: "JSESSIONID=1wbkng0xx01t0vw95dx0l9w92"
             
     + Body
 
@@ -45,11 +51,12 @@ Explin API.
                 {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-84.3813,"lat":33.8087},"country":"United States","website":"http://www.sweetwaterbrew.com/","address":["195 Ottley Drive"],"code":"30324","city":"Atlanta","phone":"1-404-691-2537","name":"Sweetwater Brewing - Atlanta","description":"","state":"Georgia","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
                 {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.4,"lat":37.7855},"country":"United States","website":"","address":["661 Howard Street"],"code":"94105","city":"San Francisco","phone":"1-415-974-0905","name":"ThirstyBear Brewing","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"}
             ]
-        
-+ Request 
+
++ Request
 
     + Headers
     
+            Cookie: "JSESSIONID=1wbkng0xx01t0vw95dx0l9w92"
             If-None-Match: "34ad82f6b67967518c3d69e99f503ecf"
     
     + Body
