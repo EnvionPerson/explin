@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://server.aouk.co.uk
+HOST: http://server.aouk.co.uk/services/rest
 
 # explinapi
 
@@ -9,8 +9,50 @@ Explin API.
 - Jersey(JAX-RS) 
 - Jetty 
 
-## AO Get Products [/AOGetProducts]
+## AO Get Products [/AOGetProducts?OSGIChain={bundleId}&city={value}]
 
++ OSGIChain
++ columnName
+
++ Parameters
+    + OSGIChain (optional, array, `fake.bundle.id`) ... OSGI Chain
+    + city (optional,array, `San Francisco,Atlanta,New York`) ... Key Pair Value Array
+
+### Get Products [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            ETag: "34ad82f6b67967518c3d69e99f503ecf"
+            
+    + Body
+
+            [{"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.393,"lat":37.7825},
+                "country":"United States","website":"http://www.21st-amendment.com/","address":["563 Second Street"],"code":"94107","city":"San Francisco","phone":"1-415-369-0900","name":"21st Amendment Brewery Cafe","description":"The 21st Amendment Brewery offers a variety of award winning house made brews and American grilled cuisine in a comfortable loft like setting. Join us before and after Giants baseball games in our outdoor beer garden. A great location for functions and parties in our semi-private Brewers Loft. See you soon at the 21A!","state":"California","type":"brewery","updated":"2010-10-24 13:54:07"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.401,"lat":37.7635},"country":"United States","website":"","address":["1705 Mariposa Street"],"code":"94107","city":"San Francisco","phone":"1-415-863-8350","name":"Anchor Brewing","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-84.4353,"lat":33.818},"country":"United States","website":"http://www.atlantabrewing.com/","address":["2323 Defoor Hills Rd NW"],"code":"30318","city":"Atlanta","phone":"404-355-5558","name":"Atlanta Brewing Company","description":"","state":"Georgia","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.51,"lat":37.7694},"country":"United States","website":"","address":["1000 Great Highway"],"code":"94121","city":"San Francisco","phone":"1-415-386-8439","name":"Beach Chalet Brewery","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.398,"lat":37.7756},"country":"United States","website":"","address":["650 Fifth Street #403"],"code":"94107","city":"San Francisco","phone":"","name":"Big Bang Brewery (Closed)","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"GEOMETRIC_CENTER","lon":-74.0086,"lat":40.7457},"country":"United States","website":"http://chelseabrewingco.com/","address":["Chelsea Piers, Pier 59"],"code":"10011","city":"New York","phone":"212.336.6440","name":"Chelsea Brewing Company","description":"Chelsea Brewing Company, rated the best brewery in New York, is a first class waterfront restaurant and the only micro-brewery in Manhattan located at pier 59.With over 15 years of experience, and 8 National Awards, we are proud to serve up to 27 natural hand-crafted ales and specialty beers using only the finest malts and hops from around the world. We offer beer tastings, brewery tours and group packages.","state":"New York","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"APPROXIMATE","lon":-122.419,"lat":37.7749},"country":"United States","website":"","address":[],"code":"","city":"San Francisco","phone":"","name":"Golden Gate Park Brewery","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"APPROXIMATE","lon":-73.9874,"lat":40.7323},"country":"United States","website":"http://www.heartlandbrewery.com/","address":[],"code":"10003","city":"New York","phone":"1-212-645-3400","name":"Heartland Brewery Union Square","description":"(No longer brewing)","state":"New York","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"RANGE_INTERPOLATED","lon":-122.445,"lat":37.7702},"country":"United States","website":"http://www.magnoliapub.com/","address":["1398 Haight Street"],"code":"94117","city":"San Francisco","phone":"1-415-864-7468","name":"Magnolia Pub and Brewery","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"RANGE_INTERPOLATED","lon":-84.3056,"lat":33.9089},"country":"United States","website":"","address":["2015 Afond Court"],"code":"30341","city":"Atlanta","phone":"1-770-841-2953","name":"New River Brewing","description":"","state":"Georgia","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"RANGE_INTERPOLATED","lon":-122.419,"lat":37.7481},"country":"United States","website":"","address":["3435 Cesar Chavez #227"],"code":"94110","city":"San Francisco","phone":"1-650-343-2739","name":"Shmaltz Enterprises","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"APPROXIMATE","lon":-122.419,"lat":37.7749},"country":"United States","website":"http://www.shmaltz.com/","address":[],"code":"","city":"San Francisco","phone":"","name":"Shmaltz Brewing Company","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"RANGE_INTERPOLATED","lon":-122.381,"lat":37.7387},"country":"United States","website":"","address":["1195-A Evans Avenue"],"code":"94124","city":"San Francisco","phone":"1-415-642-3371","name":"Speakeasy Ales and Lagers","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-84.3813,"lat":33.8087},"country":"United States","website":"http://www.sweetwaterbrew.com/","address":["195 Ottley Drive"],"code":"30324","city":"Atlanta","phone":"1-404-691-2537","name":"Sweetwater Brewing - Atlanta","description":"","state":"Georgia","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
+                {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.4,"lat":37.7855},"country":"United States","website":"","address":["661 Howard Street"],"code":"94105","city":"San Francisco","phone":"1-415-974-0905","name":"ThirstyBear Brewing","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"}
+            ]
+        
++ Request 
+
+    + Headers
+    
+    + Body
+    
+            {}
 
 ## Questions Collection [/questions]
 
