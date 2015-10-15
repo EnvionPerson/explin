@@ -1,13 +1,13 @@
 FORMAT: 1A
 HOST: http://server.aouk.co.uk/services/rest
 
-# explinapi
+# Explin Api
 
-Explin API.
-- Apache Felix (OSGI container)
-- Couchbase
-- Jersey(JAX-RS) 
-- Jetty 
+Technology stack:
+- Apache Felix (OSGI container)(4.6)
+- Couchbase (4.0)
+- Jersey(JAX-RS) (2.16.1)
+- Jetty (9.2)
 
 ## AO Get Products [/AOGetProducts?OSGIChain={OSGIChain}&city={city}]
 
@@ -51,6 +51,7 @@ Explin API.
                 {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-84.3813,"lat":33.8087},"country":"United States","website":"http://www.sweetwaterbrew.com/","address":["195 Ottley Drive"],"code":"30324","city":"Atlanta","phone":"1-404-691-2537","name":"Sweetwater Brewing - Atlanta","description":"","state":"Georgia","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"},
                 {"beer-sample":{"geo":{"accuracy":"ROOFTOP","lon":-122.4,"lat":37.7855},"country":"United States","website":"","address":["661 Howard Street"],"code":"94105","city":"San Francisco","phone":"1-415-974-0905","name":"ThirstyBear Brewing","description":"","state":"California","type":"brewery","updated":"2010-07-22 20:00:20"},"fakeBundle":"Processed"}
             ]
+            
 + Response 401
 
 + Request
