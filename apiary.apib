@@ -64,3 +64,69 @@ Technology stack:
     
 + Response 304 (not modified)
 
+
+
+## AO Get Parent [/AOGetParent?id={id1}&id={id2}]
+
++ id
+
++ Parameters
+    + id (optional, string, `AA001125`) ... List of golden product IDs as key value array
+
+### Get Products [GET]
++ Request
+
+    + Headers
+    
+            Authorization: Basic ABCDEF
+        
++ Response 200 (application/json)
+
+    + Body
+
+            [{"Geo Latitude":30.68932,"aoCode":"AA001124"}]
+
+
+## AO Get Children [/AOGetChildren?id={id1}&id={id2}]
+
++ id
+
++ Parameters
+    + id (optional, string, `AA001125`) ... List of golden product IDs as key value array
+
+### Get Products [GET]
++ Request
+
+    + Headers
+    
+            Authorization: Basic ABCDEF
+        
++ Response 200 (application/json)
+
+    + Body
+
+            [{"Geo Latitude":33.68932,"aoCode":"AA001127","parent_id":"AA001125"}]
+
+
+
+
+## AO Get Parent And Children [/AOGetParentAndChildren?id={id1}&id={id2}]
+
++ id
+
++ Parameters
+    + id (optional, string, `AA001125`) ... List of golden product IDs as key value array
+
+### Get Products [GET]
++ Request
+
+    + Headers
+    
+            Authorization: Basic ABCDEF
+        
++ Response 200 (application/json)
+
+    + Body
+
+            [{"Geo Latitude":30.68932,"aoCode":"AA001124"},[{"Geo Latitude":33.68932,"aoCode":"AA001127","parent_id":"AA001125"}]]
+
