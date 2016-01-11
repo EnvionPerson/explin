@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://server.aouk.co.uk/services/rest
+HOST: http://server.aouk.co.uk/services/rest/v1
 
 # Explin Api
 
@@ -9,7 +9,7 @@ Technology stack:
 - Jersey(JAX-RS) (2.16.1)
 - Jetty (9.2)
 
-## AO Get Products [/AOGetProducts?OSGIChain={OSGIChain}&city={city}]
+## AO Get Products [/products?OSGIChain={OSGIChain}&city={city}]
 
 + OSGIChain
 + city
@@ -66,7 +66,7 @@ Technology stack:
 
 
 
-## AO Get Parent [/AOGetParent?id={id1}&id={id2}]
+## AO Get Parent [/products/parent?id={id1}&id={id2}]
 
 + id
 
@@ -87,7 +87,7 @@ Technology stack:
             [{"Geo Latitude":30.68932,"aoCode":"AA001124"}]
 
 
-## AO Get Children [/AOGetChildren?id={id1}&id={id2}]
+## AO Get Children [/products/children?id={id1}&id={id2}]
 
 + id
 
@@ -110,7 +110,7 @@ Technology stack:
 
 
 
-## AO Get Parent And Children [/AOGetParentAndChildren?id={id1}&id={id2}]
+## AO Get Parent And Children [/products/parentAndChildren?id={id1}&id={id2}]
 
 + id
 
