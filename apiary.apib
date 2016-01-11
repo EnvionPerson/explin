@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://server.aouk.co.uk/services/rest/v1
+HOST: http://server.aouk.co.uk/services/rest
 
 # Explin Api
 
@@ -9,7 +9,7 @@ Technology stack:
 - Jersey(JAX-RS) (2.16.1)
 - Jetty (9.2)
 
-## AO Get Products [/products?OSGIChain={OSGIChain}&city={city}]
+## AO Get Products [/v1/products?OSGIChain={OSGIChain}&city={city}]
 
 + OSGIChain
 + city
@@ -66,7 +66,7 @@ Technology stack:
 
 
 
-## AO Get Parent [/products/parent?id={id1}&id={id2}]
+## AO Get Parent [/v1/products/parent?id={id1}&id={id2}]
 
 + id
 
@@ -87,7 +87,7 @@ Technology stack:
             [{"Geo Latitude":30.68932,"aoCode":"AA001124"}]
 
 
-## AO Get Children [/products/children?id={id1}&id={id2}]
+## AO Get Children [/v1/products/children?id={id1}&id={id2}]
 
 + id
 
@@ -110,7 +110,7 @@ Technology stack:
 
 
 
-## AO Get Parent And Children [/products/parentAndChildren?id={id1}&id={id2}]
+## AO Get Parent And Children [/v1/products/parentAndChildren?id={id1}&id={id2}]
 
 + id
 
@@ -130,3 +130,52 @@ Technology stack:
 
             [{"Geo Latitude":30.68932,"aoCode":"AA001124"},[{"Geo Latitude":33.68932,"aoCode":"AA001127","parent_id":"AA001125"}]]
 
+## Available Bundles [/AvailableBundles]
+
+### Get Available Bundles [GET]
+
++ Response 200 (application/json)
+
+        ["fake.bundle.id"]
+
+## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&offset={offset}&limit={limit}]
+
++ startDateTime
++ endDateTime
++ offset
++ limit
+
++ Parameters
+    + startDateTime (required, string, `[2015,7,1]`) ... date time in array style [yyyy, MM, dd, HH, mm, ss]
+    + endDateTime (required, string, `[2015,10,25]`) ... date time in array style [yyyy, MM, dd, HH, mm, ss]
+    + offset (optional, number, `0`) ... offset
+    + limit (optional, number, `10`) ... limit
+    
+### Get Delta Changes [GET]
+
++ Response 200 (application/json)
+
+        [  {
+            "date": "2015-7-21 23:13:32",
+            "product": {
+                "Product__id":"AA000020",
+                "Crib__Rollaway":"Y",
+                "Internet__Wireless__Fee":null,
+                "Child__Program":null,
+                "Suburb":"",
+                "Eco__Friendly":null,
+                "Discount__Seniors":null,
+                "Number__of__Rooms":"466",
+                "Local__Currency":"Y",
+                "Number__of__Floors":"22"
+                },
+            "id": 24,
+            "status": "new"
+            },
+           {
+            "date":"2015-7-21 23:13:33",
+            "product": {},
+            "id": 30,
+            "status": "new"
+            }
+        ]
