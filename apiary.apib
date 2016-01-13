@@ -138,23 +138,45 @@ Technology stack:
 
         ["fake.bundle.id"]
 
-## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&offset={offset}&limit={limit}]
+## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&loadProduct={loadProduct}&offset={offset}&limit={limit}]
 
 + startDateTime
 + endDateTime
++ loadProduct
 + offset
 + limit
 
 + Parameters
     + startDateTime (required, string, `[2015,7,1]`) ... date time in array style [yyyy, MM, dd, HH, mm, ss]
     + endDateTime (required, string, `[2015,10,25]`) ... date time in array style [yyyy, MM, dd, HH, mm, ss]
+    + loadProduct (optional, string, `false`) ... flag to download the product (true/false)
     + offset (optional, number, `0`) ... offset
     + limit (optional, number, `10`) ... limit
     
 ### Get Delta Changes [GET]
 
+
+
++ Response 200 (application/json) 
+
+        loadProduct=false
+    
+        [  {
+            "date": "2015-7-21 23:13:32",
+            "id": 24,
+            "status": "new"
+            },
+           {
+            "date":"2015-7-21 23:13:33",
+            "id": 30,
+            "status": "new"
+            }
+        ]
+
 + Response 200 (application/json)
 
+        loadProduct=true
+        
         [  {
             "date": "2015-7-21 23:13:32",
             "product": {
@@ -174,7 +196,16 @@ Technology stack:
             },
            {
             "date":"2015-7-21 23:13:33",
-            "product": {},
+            "product": {"Product__id":"AA000022",
+                "Crib__Rollaway":"Y",
+                "Internet__Wireless__Fee":null,
+                "Child__Program":null,
+                "Suburb":"",
+                "Eco__Friendly":null,
+                "Discount__Seniors":null,
+                "Number__of__Rooms":"466",
+                "Local__Currency":"Y",
+                "Number__of__Floors":"22"},
             "id": 30,
             "status": "new"
             }
