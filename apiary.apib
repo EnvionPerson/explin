@@ -149,7 +149,7 @@ Technology stack:
 + Parameters
     + startDateTime (required, string, `[2015,7,1]`) ... date time in array style [yyyy, MM, dd, HH, mm, ss]
     + endDateTime (required, string, `[2015,10,25]`) ... date time in array style [yyyy, MM, dd, HH, mm, ss]
-    + loadProduct (optional, string, `false`) ... flag to download the product (true/false)
+    + loadProduct (optional, string, `none`) ... flag to download the product (none/reference/all)
     + offset (optional, number, `0`) ... offset
     + limit (optional, number, `10`) ... limit
     
@@ -159,7 +159,7 @@ Technology stack:
 
 + Response 200 (application/json) 
 
-        loadProduct=false
+        loadProduct=none
     
         [  {
             "date": "2015-7-21 23:13:32",
@@ -175,37 +175,22 @@ Technology stack:
 
 + Response 200 (application/json)
 
-        loadProduct=true
+        loadProduct=reference
         
         [  {
             "date": "2015-7-21 23:13:32",
             "product": {
                 "Product__id":"AA000020",
-                "Crib__Rollaway":"Y",
-                "Internet__Wireless__Fee":null,
-                "Child__Program":null,
-                "Suburb":"",
-                "Eco__Friendly":null,
-                "Discount__Seniors":null,
-                "Number__of__Rooms":"466",
-                "Local__Currency":"Y",
-                "Number__of__Floors":"22"
+                
                 },
             "id": 24,
             "status": "new"
             },
            {
             "date":"2015-7-21 23:13:33",
-            "product": {"Product__id":"AA000022",
-                "Crib__Rollaway":"Y",
-                "Internet__Wireless__Fee":null,
-                "Child__Program":null,
-                "Suburb":"",
-                "Eco__Friendly":null,
-                "Discount__Seniors":null,
-                "Number__of__Rooms":"466",
-                "Local__Currency":"Y",
-                "Number__of__Floors":"22"},
+            "product": {
+                "Product__id":"AA000022",
+                },
             "id": 30,
             "status": "new"
             }
