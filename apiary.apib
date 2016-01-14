@@ -9,7 +9,7 @@ Technology stack:
 - Jersey(JAX-RS) (2.16.1)
 - Jetty (9.2)
 
-## Products [/v1/products?OSGIChain={OSGIChain}&city={city}]
+## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}]
 
 + OSGIChain
 + city
@@ -18,6 +18,8 @@ Technology stack:
 + Parameters
     + OSGIChain (optional, string, `fake.bundle.id`) ... OSGI Chain
     + city (optional, string, `San Francisco,Atlanta,New York`) ... Key Pair Value Array
+    + offset (optional, number, `0`) ... offset
+    + limit (optional, number, `10`) ... limit
 
 ### Get Products [GET]
 + Request
