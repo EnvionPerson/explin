@@ -8,7 +8,50 @@ Technology stack:
 - Couchbase (4.0)
 - Jersey(JAX-RS) (2.16.1)
 - Jetty (9.2)
+## Product [/v1/products/id/{id}]
 
++ id
+
++ Parameters
+    + id (required, number, `100228`) ... product id (document id)
+
+### Get Product [GET]
+
++ Response 200 (application/json)
+
+        {   
+            "Crib__Rollaway":null,
+            "Internet__Wireless__Fee":null,
+            "Child__Program":null,
+            "Suburb":"",
+            "Eco__Friendly":null,
+            "Discount__Seniors":null,
+            "Number__of__Rooms":"0",
+            "Local__Currency":null,
+            "Number__of__Floors":"0",
+            "Club__Room__Benefits":null,"Meal__Inc__All__Inclusive":null,"Department":null,"Country__Code":"FR","Fitness__Equipment":"0","Recreation__Game__Room":"0",
+            "Daily__Maid":"0","Beauty__or__Hair__Salon":null,"Beach__Location":"0","Swimming__Pool":"0","Snowski":"0","NS__City__Place__Key":"0","Air__Conditioning":"0",
+            "Laundry__Service":null,"Refrigerator":"0","Discount__AAA":null,"Baby__Sitting":null,"Pet__Size__Limit":"0","Longitude":null,"State__Code":"","Beach__Friendly":null,
+            "Tea__Coffee__Making__Facilities":"0","Newspaper":"0","Meal__Inc__MAP":null,"Whirlpool":"0","Country":"France","Export__Status":"0","Sports__Friendly":null,"Telephone__Message":"0",
+            "Fireplace":"0","Food__&__Beverage__Friendly":null,"In__room__safe":"0","Bikes":"0","Family__Voice":"N","Description":"Ibis Budget Pontault Combault RN4","VCR":"0","Day__Spa":"0",
+            "Horseback":"0","Microwave":"0","Airport__Near":null,"NS__Base__City__Place__Key":"0","Internet__Wireless":null,"Checkout__Time":"0","Pets__Allowed":null,"Iron__and__Ironing__Board":"0",
+            "Luxury__Voice":"N","Internet__Common":null,"Discount__Group":null,"Wheel__Chair__Access__in__Hotel":null,"Country__Group":"","Health__Club__or__Gym":"0","Checkin__Time":"0","Parking":null,
+            "Suburb__Location":"0","Multilingual__Staff":null,"Shopping__Friendly":null,"Pet__Fee":null,"Swimming__Pools__Indoor__No":"0","Jogging":"0","Tourist__Area__Location":"0","Business__Friendly":null,
+            "Television":"0","Balcony__or__Terrace":"0","SKU_ID":"100228","Meal__Inc__AP":null,"ATM":null,"Laundry__Room":null,"Extended__Stay":null,"Car__Rental__Desk":null,"Latitude":null,"All__Suite":null,
+            "Business__Center":null,"Beach":"0","Year__Built":"0","Rural__Location":"0","Internet__Cable":null,"Childs__Pool":"0","Minibar":"0","Global__ID":"","Cable__TV":"0","Hottub":"0",
+            "Pet__Size__Limit__Indicator":null,"Non__Smoking":"0","Golf":"0","City__Code":"","Complementary__Transport":null,"No__of__On__Site__Bars":"0","City":"Pontault-Combault","Resort__Location":null,
+            "Airport__Location":"0","Internet__Common__Wireless__Fee":null,"Kitchenette":"0","City__Location":"0","Active":"0","Mountain__Location":"0","Mod.__Date":"2015/06/29 04:47:28.000000000",
+            "Couples__Friendly":null,"Conference__Centre":null,"State":"","Discount__Govt__MilIitary":null,"Swimming__Pools__Outdoor__No":"0","No__of__On__Site__Restaurants":"0","Management__Facility":null,
+            "Region":"","Meal__Inc__CP":null,"Tennis__Court__Indoor":"0","Wedding__Friendly":null,"Pet__Friendly":null,"Adult__Friendly":null,"Convention__Centre__Location":"0","Boutique__Voice":"N",
+            "User":"core","Pet__Services":null,"Internet__Common__Fee":null,"Telephone":"0","Parking__Valet":null,"Family__Friendly":null,"Room__Service":null,"Singles__Friendly":null,"Discount__Corp":null,
+            "Scuba":"0","Boats":"0","Swimming__Pool__Outdoor":"0","Region__Code":"","Luxury__Friendly":null,"Computer__Available":null,"Water__Ski":"0",
+            "Product__id":"AA160229","LGBT__Friendly":null,
+            "Fishing":"0","Fax__Available":null,"Internet__Common__Wireless":null,"Parking__Cost":null,"Region__URL":"","Shopping__Mall":"0","Snorkeling":"0","Phone":"8-9268-0944",
+            "Internet__Cable__Fee":null,"Product__Type":"0","Tennis__Court__Outdoor":"0","Mod_Num":"0","Pet__Amenities":null,"Meal__Inc__FB":null,"Comments":"","Vendor":null,
+            "Gift__Shop__or__Boutique":null,"Product__Created":null,"Concierge":null,"Casino":"0","Year__Rennovated":"0","Spa__-__Relax__Friendly":null,"Complementary__Coffee":null,"Fax":"1-6443-8550"
+        }
+        
+        
 ## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}]
 
 + OSGIChain
