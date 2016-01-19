@@ -9,6 +9,14 @@ Technology stack:
 - Jersey(JAX-RS) (2.16.1)
 - Jetty (9.2)
 
+The main OSGI modules:
+- bundle-manager (registry 'Chain' modules in explinAPI)
+- couchbase-mod (Couchbase Data Layer )
+- explin-rest (REST implementation services )
+- services (core interface)
+- tc611 (Time Capsule)
+- testapp (js application for testing services)
+
 ## Product [/v1/products/id/{id}]
 
 + id
@@ -185,6 +193,8 @@ Technology stack:
         ["fake.bundle.id"]
 
 ## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&loadProduct={loadProduct}&offset={offset}&limit={limit}]
+
+This call is to capture the Change Management of Products and the objects between two points in Time.
 
 + startDateTime
 + endDateTime
