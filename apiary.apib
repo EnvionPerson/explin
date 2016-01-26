@@ -209,18 +209,17 @@ This call is to capture the Change Management of Products and the objects betwee
     + offset (optional, number, `0`) ... offset, the default value is 0
     + limit (optional, number, `10`) ... limit, the default value is 10
     
-### Get Delta Changes [GET]
-
-
+### Get Delta Changes  [GET]
 
 + Response 200 (application/json) 
 
-        loadProduct=none
+        loadProduct=none 
         {
-        "limit":10,
-        "total":5000,
-        "offset":0,
-        "content":  [  {
+            "limit":10,
+            "total":5000,
+            "offset":0,
+            "content":  [  
+            {
             "date": "2015-7-21 23:13:32",
             "id": 24,
             "status": "new"
@@ -237,11 +236,11 @@ This call is to capture the Change Management of Products and the objects betwee
 
         loadProduct=reference
         {
-        "limit":10,
-        "total":5000,
-        "offset":0,
-        "content":
-        [  {
+            "limit":10,
+            "total":5000,
+            "offset":0,
+            "content":    [ 
+            {
             "date": "2015-7-21 23:13:32",
             "product": {
                 "Department":null,
@@ -274,12 +273,13 @@ This call is to capture the Change Management of Products and the objects betwee
 
 + Response 200 (application/json)
 
-        //loadProduct=all
+        loadProduct=all
         {
-        "limit":10,
-        "total":5000,
-        "offset":0,
-        "content":  [  {
+            "limit":10,
+            "total":5000,
+            "offset":0,
+            "content":  [  
+            {
             "date": "2015-7-21 23:13:32",
             "product": {
                 "Product__id":"AA000020",
