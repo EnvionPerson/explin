@@ -316,11 +316,104 @@ This call is to capture the Change Management of Products and the objects betwee
         }
 
 
-## Geo Hierarchy [v1/products/hierarchy]
+## Geo Hierarchy [/v1/products/hierarchy]
 
 
 ### Get Hierarchy [GET]
 
 + Response 200 (application/json)
 
-        {}
+        {  
+        "CHILD":[  
+        {  
+         "CHILD":[  
+            {  
+               "CHILD":[  
+                  {  
+                     "CHILD":[  
+                        {  
+                           "CHILD":[  
+                              {  
+                                 "Description":"Leith",
+                                 "Product__id":"",
+                                 "Product__Type":"0",
+                                 "SKU__ID":"377620"
+                              },
+                              {  
+                                 "Description":"Gorgie",
+                                 "Product__id":"",
+                                 "Product__Type":"0",
+                                 "SKU__ID":"377621"
+                              }
+                           ],
+                           "Description":"Edinburgh",
+                           "Product__id":"",
+                           "Product__Type":"0",
+                           "SKU__ID":"377614"
+                        }
+                     ],
+                     "Description":"Scotland",
+                     "Product__id":"",
+                     "Product__Type":"0",
+                     "SKU__ID":"377615"
+                  },
+                  {  
+                     "CHILD":[  
+                        {  
+                           "CHILD":[  
+                              {  
+                                 "Description":"Chiswick",
+                                 "Product__id":"",
+                                 "Product__Type":"0",
+                                 "SKU__ID":"377625"
+                              }
+                           ],
+                           "Description":"London",
+                           "Product__id":"",
+                           "Product__Type":"0",
+                           "SKU__ID":"377624"
+                        }
+                     ],
+                     "Description":"England",
+                     "Product__id":"",
+                     "Product__Type":"0",
+                     "SKU__ID":"377623"
+                  },
+                  {  
+                     "Description":"Wales",
+                     "Product__id":"",
+                     "Product__Type":"0",
+                     "SKU__ID":"377626"
+                  }
+               ],
+               "Description":"United Kingdom",
+               "Product__id":"",
+               "Product__Type":"0",
+               "SKU__ID":"377622"
+            }
+         ],
+         "Description":"Europe",
+         "Product__id":"",
+         "Product__Type":"0",
+         "SKU__ID":"377619"
+        },
+        {  
+         "CHILD":[  
+            {  
+               "Description":"New York",
+               "Product__id":"",
+               "Product__Type":"0",
+               "SKU__ID":"377629"
+            }
+         ],
+         "Description":"America",
+         "Product__id":"",
+         "Product__Type":"0",
+         "SKU__ID":"377628"
+        }
+        ],
+        "Description":"World",
+        "Product__id":"",
+        "Product__Type":"0",
+        "SKU__ID":"377618"
+        }
