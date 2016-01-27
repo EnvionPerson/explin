@@ -61,7 +61,7 @@ The main OSGI modules:
         }
         
         
-## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}]
+## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}&bundleFilter={filter}]
 
 + OSGIChain
 + city
@@ -72,6 +72,7 @@ The main OSGI modules:
     + city (optional, string, `San Francisco,Atlanta,New York`) ... Key Pair Value Array
     + offset (optional, number, `0`) ... offset, default value is 0
     + limit (optional, number, `10`) ... limit, default value is 10
+    + filter (optional, string, `[tour, country]`) ... apply filters to products
 
 ### Get Products [GET]
 + Request
@@ -418,9 +419,7 @@ This call is to capture the Change Management of Products and the objects betwee
         "SKU__ID":"377618"
         }
 
-# Bundle Filter "in developing" [/bundleFilter]
-
-## Create and retrive  [/]
+## Bundle Filter "in developing" [/bundleFilter]
 
 ### Get All Filters [GET]
 
@@ -470,3 +469,13 @@ This call is to capture the Change Management of Products and the objects betwee
         ]
         
 + Response 204
+
+## Delete Filter [/bundleFilter/{name}]
+
++ Parameters
+    + name (required, string, `tour`) ... filter name
+
+### Delete filter [DELETE]
+
++ Response 204
+
