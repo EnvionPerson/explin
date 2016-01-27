@@ -417,3 +417,56 @@ This call is to capture the Change Management of Products and the objects betwee
         "Product__Type":"0",
         "SKU__ID":"377618"
         }
+
+# Bundle Filter "in developing" [/bundleFilter]
+
+## filter 
+
+### Get All Filters [GET]
+
++ Response 200 (application/json)
+
+        {
+            "total": 2,
+            "filters": [
+                {
+                    "name": "tour",
+                    "fields": [
+                        "Tour__Date",
+                        "Location"
+                    ]
+                }, 
+                {
+                    "name": "country",
+                    "fields": [
+                        "Country",
+                        "City",
+                        "City__Code"
+                    ]    
+                }
+            ]
+        }
+        
+### Add new Filters [POST]
+
++ Request 
+
+        [
+            {
+                "name": "country",
+                "fields": [
+                        "Country",
+                        "City",
+                        "City__Code"
+                    ]
+            },
+            {
+                "name": "tour",
+                    "fields": [
+                        "Tour__Date",
+                        "Location"
+                    ]
+            }
+        ]
+        
++ Response 204
