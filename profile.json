@@ -1,16 +1,33 @@
 //profiles example
 {
     "name": "Hotel",
-    "filter": {
-        "type": "product",
-        "fields": [
-            "Description",
-            "GTA_Rating",
-            "Product__Type"
-        ]
-    },
-    "keyRename": {
-        "GTA_Rating": "Rating",
-        "Product__Type": "ProductType"
-    }
+    "filter": [
+        {
+            "type": "product",
+            "fields": [
+                "Description",
+                "GTA_Rating",
+                "Product__Type"
+            ]
+        },{
+            "type": "copy",
+            "fields": [
+                "Copy__Name",
+                "Copy__Text"
+            ]
+        }
+    ],
+    "keyRename": [
+        {
+            "type": "product",
+            "GTA_Rating": "Rating",
+            "Product__Type": "ProductType"
+        }
+    ],
+    "valueRename": [
+        {
+            "type": "copy",
+            "ntm.product.URL.en": "Product URL"
+        }
+    ]
 }
