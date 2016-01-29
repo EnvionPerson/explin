@@ -1,0 +1,14 @@
+//profiles example
+{
+    "name": "Hotel",
+    "filter": {
+        "type": "",
+        "fields": [
+            "Description","GTA_Rating", "Product__Type"
+        ]
+    },
+    "keyRename": {
+        "GTA_Rating": "Rating",
+        "Product__Type": "ProductType"
+    }
+}
