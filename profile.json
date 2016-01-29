@@ -2,9 +2,11 @@
 {
     "name": "Hotel",
     "filter": {
-        "type": "",
+        "type": "product",
         "fields": [
-            "Description","GTA_Rating", "Product__Type"
+            "Description",
+            "GTA_Rating",
+            "Product__Type"
         ]
     },
     "keyRename": {
