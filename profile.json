@@ -1,6 +1,8 @@
 //profiles example
 {
+    "AO_JSON_TYPE": "profile",
     "name": "Hotel",
+    "etag": false,
     "filter": [
         {
             "type": "product",
@@ -27,6 +29,7 @@
     "valueRename": [
         {
             "type": "copy",
+            "field": "Copy__Name",
             "ntm.product.URL.en": "Product URL"
         }
     ]
