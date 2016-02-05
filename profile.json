@@ -2,35 +2,32 @@
 {
     "AO_JSON_TYPE": "profile",
     "name": "Hotel",
-    "etag": false,
-    "filter": [
-        {
-            "type": "product",
-            "fields": [
-                "Description",
-                "GTA_Rating",
-                "Product__Type"
-            ]
-        },{
-            "type": "copy",
-            "fields": [
-                "Copy__Name",
-                "Copy__Text"
-            ]
+    "filter": {
+        "product": [
+            "Description",
+            "GTA_Rating",
+            "Product__Type"
+        ],
+        "copy": [
+            "Copy__Name",
+            "Copy__Text"
+        ]
+    },
+    "keyRename": {
+        "product": {
+             "GTA_Rating": "Rating",
+             "Product__Type": "ProductType"
+        },
+        "copy": {
+             "Copy__Name": "CopyName",
+             "Copy__Text": "Text"
         }
-    ],
-    "keyRename": [
-        {
-            "type": "product",
-            "GTA_Rating": "Rating",
-            "Product__Type": "ProductType"
+    },
+    "valueRename":  {
+            "copy": {
+                "Copy__Name": {
+                    "ntm.product.URL.en":"Product URL"
+            }
         }
-    ],
-    "valueRename": [
-        {
-            "type": "copy",
-            "field": "Copy__Name",
-            "ntm.product.URL.en": "Product URL"
-        }
-    ]
+    }
 }
