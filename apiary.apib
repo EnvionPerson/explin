@@ -16,13 +16,15 @@ The main OSGI modules:
 - services (core interface)
 - tc611 (Time Capsule)
 - testapp (js application for testing services)
+- profile-manager (apply the profile)
 
-## Product [/v1/products/id/{id}]
+## Product [/v1/products/id/{id}?profile={profileName}]
 
 + id
 
 + Parameters
     + id (required, number, `100228`) ... product id (document id)
+    + profileName (optional, string, `Hotel`) ... apply profile to product
 
 ### Get Product [GET]
 
@@ -61,7 +63,7 @@ The main OSGI modules:
         }
         
         
-## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}&bundleFilter={filter}]
+## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}&profile={profileName}]
 
 + OSGIChain
 + city
@@ -72,7 +74,7 @@ The main OSGI modules:
     + city (optional, string, `San Francisco,Atlanta,New York`) ... Key Pair Value Array
     + offset (optional, number, `0`) ... offset, default value is 0
     + limit (optional, number, `10`) ... limit, default value is 10
-    + filter (optional, string, `[tour, country]`) ... apply filters to products
+    + profileName (optional, string, `Hotel`) ... apply profile to products
 
 ### Get Products [GET]
 + Request
@@ -419,7 +421,7 @@ This service returns the full geo hierarchy.
         "SKU__ID":"377618"
         }
 
-## Bundle Filter [/bundleFilter/{name}]
+## Bundle Filter [/profilManager/{name}]
 The Filter will keep only fields that specified in request. (others will be stripped).
 + name - need only when delete
  
@@ -428,47 +430,73 @@ The Filter will keep only fields that specified in request. (others will be stri
 + Response 200 (application/json)
 
         {
-            "total": 2,
-            "filters": [
-                {
-                    "name": "tour",
-                    "fields": [
-                        "Tour__Date",
-                        "Location"
-                    ]
-                }, 
-                {
-                    "name": "country",
-                    "fields": [
-                        "Country",
-                        "City",
-                        "City__Code"
-                    ]    
-                }
-            ]
+            "AO_JSON_TYPE": "profile",
+           "name": "Hotel",
+        "filter": {
+        "product": [
+            "Description",
+            "GTA_Rating",
+            "Product__Type"
+        ],
+        "copy": [
+            "Copy__Name",
+            "Copy__Text"
+        ]
+        },
+        "keyRename": {
+        "product": {
+             "GTA_Rating": "Rating",
+             "Product__Type": "ProductType"
+        },
+        "copy": {
+             "Copy__Name": "CopyName",
+             "Copy__Text": "Text"
+        }
+        },
+        "valueRename":  {
+            "copy": {
+                "Copy__Name": {
+                    "ntm.product.URL.en":"Product URL"
+            }
+        }
+        }
         }
         
 ### Add New Filters [POST]
 If the filter already exists then overwritten
 + Request 
 
-        [
-            {
-                "name": "country",
-                "fields": [
-                        "Country",
-                        "City",
-                        "City__Code"
-                    ]
-            },
-            {
-                "name": "tour",
-                    "fields": [
-                        "Tour__Date",
-                        "Location"
-                    ]
-            }
+        {
+           "name": "Hotel",
+        "filter": {
+        "product": [
+            "Description",
+            "GTA_Rating",
+            "Product__Type"
+        ],
+        "copy": [
+            "Copy__Name",
+            "Copy__Text"
         ]
+        },
+        "keyRename": {
+        "product": {
+             "GTA_Rating": "Rating",
+             "Product__Type": "ProductType"
+        },
+        "copy": {
+             "Copy__Name": "CopyName",
+             "Copy__Text": "Text"
+        }
+        },
+        "valueRename":  {
+            "copy": {
+                "Copy__Name": {
+                    "ntm.product.URL.en":"Product URL"
+            }
+        }
+        }
+        }
         
 + Response 204
 
@@ -479,10 +507,10 @@ If the filter already exists then overwritten
     
 + Response 204
 
-## Example Call products with filter [/v1/products?bundleFilter={filter}]
+## Example Call products with filter [/v1/products?profile={profileName}]
 
 + Parameters
-    + filter (optional, string, `[tour, country]`) ... apply filters to products
+    + profileName (optional, string, `Hotel`) ... apply profile to products
 
 ### Apply Filters [GET]
 
@@ -498,4 +526,3 @@ If the filter already exists then overwritten
                 "Location": ""
             }   
         ]
-
