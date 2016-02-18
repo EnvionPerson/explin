@@ -13,6 +13,9 @@
             "Copy__Text"
         ]
     },
+    "productRowSelection":{
+        "Product__Type": "495"
+    },
     "keyRename": {
         "product": {
              "GTA_Rating": "Rating",

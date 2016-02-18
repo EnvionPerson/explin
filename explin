@@ -1,5 +1,9 @@
 #! /bin/bash
+# chkconfig:   2345 80 20
+# description: Start and Stop Explin RESTfull API
 
+EXPLIN_USER=explinuser
+FELIX_HOME=/mnt/apps/explin/felix-framework-4.6.1/
 
 felix_pid(){
 	echo `ps aux | grep felix.jar | grep -v grep | awk '{ print $2 }'`
@@ -14,13 +18,13 @@ start(){
 
         echo "Starting felix.."
 
-        sudo -u explinuser java -Dgosh.args=--nointeractive -jar bin/felix.jar >log.log 2>log.log &
+        cd $FELIX_HOME && sudo -u $EXPLIN_USER java -Dgosh.args=--nointeractive -jar bin/felix.jar >log.log 2>log.log &
 	fi
 }
 
 stop(){
         echo "Stopping felix.."
-        sudo -u explinuser kill $(felix_pid)
+        sudo -u $EXPLIN_USER kill $(felix_pid)
 }
 
 restart(){
@@ -29,8 +33,15 @@ restart(){
         sleep 60
         start
 }
-
-
+status(){
+	pidfelix=$(felix_pid)
+	if [ -n "$pidfelix" ]
+	then
+		echo "felix is running (pid: $pidfelix)"
+	else
+		echo "felix is down "
+	fi
+}
 
 
 case "$1" in
@@ -43,8 +54,11 @@ case "$1" in
   restart)
         restart
         ;;
+  status)
+	  	status
+	  	;;
   *)
-        echo "Usage: explin {start|stop|restart}"
+        echo "Usage: explin {start|stop|restart|status}"
         exit 1
 esac
 
