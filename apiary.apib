@@ -18,12 +18,13 @@ The main OSGI modules:
 - testapp (js application for testing services)
 - profile-manager (apply the profile)
 
-## Product [/v1/products/id/{id}?profile={profileName}]
+## Product [/v1/products/ids?id={id1}&id={id2}&profile={profileName}]
 
 + id
 
 + Parameters
-    + id (required, number, `100228`) ... product id (document id)
+    + id1 (required, number, `AA000002`) ... product id (document id)
+    + id2 (required, number, `AA000003`) ... product id (document id)
     + profileName (optional, string, `Hotel`) ... apply profile to product
 
 ### Get Product [GET]
