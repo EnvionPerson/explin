@@ -1,33 +1,195 @@
-FORMAT: 1A
-HOST: http://server.aouk.co.uk/services/rest
+# AO Explin API
 
-# Explin Api
+<style type = "text/css" >
+    .fixedColumns
+    {
+        vertical-align:top;
+        display: inline-block;
+    }
+    .scrollableTable
+    {
+        display: inline-block;
+        width:100px;
+        white-space: nowrap;
+        overflow-x: scroll;
+    }
+</style>
 
-Technology stack:
-- Apache Felix (OSGI container)(4.6)
-- Couchbase (4.0)
-- Jersey(JAX-RS) (2.16.1)
-- Jetty (9.2)
 
-The main OSGI modules:
-- bundle-manager (registry 'Chain' modules in explinAPI)
-- couchbase-mod (Couchbase Data Layer )
+## Purpose
+The AO Explin API is designed to provide internal AO projects and partners with a set of API calls to enable the construction of products and associated assests for websites, applications or similar, for integration into existing systems of the creation of new channels.  
+For further information please refer to the www.aouk.co.uk or www.ao-americas.com websites.
+
+
+## API Dataset
+The dataset of products available in the AO Explin API include:  
+- Product IDs
+- Product Meta Data
+- Copy + Meta Data
+- Images + Meta Data + URLs
+- Logos + Meta Data + URLs
+- Videos + Meta Data + URLs
+- Prices + Meta Data
+
+- Relationships between 2 or more Products
+- Relationships between 2 or more Objects/Products
+
+
+Please note that this includes the relationships of _Parent/Child Product Packages_  as in "Holidays Packages and Component Products" and "Relevant Products" i.e. Hotel A is associated with Hotel B via Wedding Experience.
+
+Parent and Child relationships are referenced within the dataset as sub_arrays of Product IDs.
+
+## Categories
+The API is divided into several categories
+
+- _Search_ - Based upon defined fields
+- _Deltas_ - Changes in content and datasets
+- _Batch_ - Calling of data en mass
+- _Schema_ - Calls relating to existance of custom metadata and realtionships
+
+
+## Technology stack
+- _Apache Felix_ (OSGI container)(4.6)
+- _Couchbase_ (4.0)
+- _Jersey_(JAX-RS) (2.16.1)
+- _Jetty_ (9.2)
+
+## Terms of Use
+By using the AO Explin API you are agreeing to AO UK Ltd terms of use.
+
+## Authorization
+
+Every request requires server authentication credentials which are used in the _Authorization_ field
+
+The Authorization field is constructed in the following manner:
+- The username and password are combined into a string separated by a colon, e.g.: username:password
+- The resulting string is encoded using the RFC2045-MIME variant of Base64, except not limited to 76 char/line
+- The authorization method and a space i.e. "Basic " is then put before the encoded string
+
+For example, if the user agent uses Aladdin as the username and OpenSesame as the password then the field is formed as follows:    
+
+    Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+
+## OSGI Modules (Bundles)
+
+The AO Explin API has the ability to call extra OSGI Modules processing routines that are called _**bundles**_ to augment the dataset being returned,
+based upon third party systems. i.e. CRMs, Pricing and Availabilty, Stock and Distribution systems or other business processes as defined.
+
+It therefore means that different AO UK Ltd customers could have a different set of _**bundles**_ to call upon from within the different supplied systems.
+
+It is possible to call one or more bundles in  order, known as a _**OSGIChain**_ seperated by a comma    
+_i.e. OSGiChain=customer.add-10%-to-price.id, customer.remove-short-lifespan-products.id_
+<!--The key OSGI modules:
+- bundle-manager (registry 'Chain' modules in AO Explin API)  
+- couchbase-mod (Couchbase Data Layer )  
 - explin-rest (REST implementation services )
 - services (core interface)
 - tc611 (Time Capsule)
 - testapp (js application for testing services)
-- profile-manager (apply the profile)
+- profile-manager (apply the profile)-->
 
-## Product [/v1/products/ids?id={id1}&id={id2}&profile={profileName}]
 
-+ id
+## JSON Dataformat
+
+JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is ideal for humans to read and write as well as machines to parse and generate. 
+
+## Profiles
+
+##### Filter Datasets
+Profiles are a series of JSON documents that contain a list of _fields_ that the call should return in the dataset per a product. Each profile is assigned an unique _profilename_.
+If a field is not referenced in this file, then it is considered redundant and will be removed from the resulting dataset. 
+This allows for a more concise dataset to be create with the superflous fields being exposed.
+
+##### Rename Dataset Fields
+Profiles also allow for the renaming of fields at the point of export which can be used to standardise the resulting dataset.
+An example of this could be where there are two _descriptions_ for a product, where one description is Brand X and the Other description is Brand Y.
+    brandX.description
+    brandY.description
+If the data is called with a Profile that is profilename = "BrandXprofile", where only the Brand X information is requested, the brandX.description can be renamed to just _description_.
+Another Profile could have the profilename = "BrandYprofile" could also rename the brandY.description to _description_, therefore a more simplistic template which fits both brands can be created.
+
+
+## Verbs and Vocabulary
+- _Get_ - Retrieve any Information  
+- _Post_ - Add any Products 
+- _Put_ - Edit any products 
+- _Delete_ - Delete any Products
+
+## Headers
+
+- _1xxxx_ - Information 
+- _2xxxx_ - Success 
+- _3xxxx_ - Redirect 
+- _4xxxx_ - Client Error 
+- _5xxxx_ - Server Error 
+
+Typical examples and their meanings:
+   
+- _200_ - OK/success  (the call has been processed and the result is successful) 
+- _201_ - Created 
+- _202_ - Accepted (Underway but not complete yet, i.e.. Queued or a long process that will respond eventually) 
+- _204_ - No Content (primary response when you delete a product)
+
+- _301_ - Moved Permanently 
+- _302_ - Moved Temporary 
+
+- _400_ - Bad Request (failed due to client error, i.e. Not AOs fault!) 
+- _401_ - Requires Authentication 
+- _403_ - Forbidden, i.e not Authorised for this option. 
+- _404_ - Resource not found (no data as in product missing) 
+
+
+## Media Type in Header
+
+AO Explin API supports JSON format which needs to be specified within the header of the API calll
+
+    HTTP/1.1 200 OK
+    Server: aws.aouk.co.uk
+    Date: Mon, 13 Jul 2015 13:37:27 GMT
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 2004
+    Status: 200 OK
+    Cache-Control: public, max-age=60, s-maxage=60
+
+How is it structured? use X-AO for the start of the headers i.e.  
+
+    X-AO-Media-Type: explin.v1                    
+    X-AO-Request-ID:  51946421:7250:6882ED3:55A3BF16 
+    X-AO-Session-ID:   2311D13F6A416 
+
+## States
+Stateless, but with a date/time stamp to allow control and reference. Some calls use date/time as parameters.
+
+
+# Group Product Calls
+
+
+## ProductByDocID [/v1/products/ids?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
+
+The *_product_* call returns 1 or more products and the associated metadata and objects, based upon the _Product ID_ (sometimes refered to as the SKU Number) of the product(s).
+
+This call returns the data based upon the fact the _Document ID_ of the JSON objects matches the _Product ID_, therefore returns the information at an optimim
+
+<table style="width: 100%; margin: 12px 0 0 0;">
+<tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
+<tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
+<tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
+</table>
+
+
 
 + Parameters
-    + id1 (required, number, `AA000002`) ... product id (document id)
-    + id2 (required, number, `AA000003`) ... product id (document id)
-    + profileName (optional, string, `Hotel`) ... apply profile to product
+    + id1 (required, string, `AA000002FG`) ... product id (document id)
+    + id2 (required, string, `AA0026262`) ... product id (document id)
+    + id3 (required, string, `AA002352525`) ... product id (document id)
+    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
+    + profilename (optional, string, `Hotel`) ... apply profile to product
 
-### Get Product [GET]
+### Get ProductByDocID [GET]
+
+
 
 + Response 200 (application/json)
 
@@ -64,14 +226,29 @@ The main OSGI modules:
         }
         
         
-## Products [/v1/products?OSGIChain={OSGIChain}&city={city}&offset={offset}&limit={limit}&profile={profileName}]
 
-+ OSGIChain
-+ city
-+ key - key=value
+## Products [/v1/products?OSGIChain={bundlename}&city={city}&offset={offset}&limit={limit}&profile={profileName}]
+
+Performs a search of the AO Campaign system for products based upon metadata. Please note that the source database can be indexed to increase performance of the speed of the returned dataset
+
+
+<table style="width: 100%; margin: 12px 0 0 0;">
+<tr><td><strong>Required Parameters</strong></td></tr>
+<tr><td><strong>key => value</strong> - the <i>key</i> (string) refers to the name of the field to be searched upon where the <i>value</i> (string) refers to the content of the field
+<i>i.e. city=Sydney</i></td></tr>
+
+<tr><td><strong>OR</strong></td></tr>
+
+<tr><td><strong>key => value_array</strong> - the key refers to the name of the field to be searched upon where the value refers to the content items of the field seperated by a comma
+<i>i.e. city=Sydney, Toronto, New York</i></td></tr>
+
+<tr><td><strong>Optional Parameters</strong></td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename field within the dataset</td></tr>
+</table>
 
 + Parameters
-    + OSGIChain (optional, string, `fake.bundle.id`) ... OSGI Chain
+    + bundlename (optional, string, `fake.bundle.id`) ... OSGI Chain
     + city (optional, string, `San Francisco,Atlanta,New York`) ... Key Pair Value Array
     + offset (optional, number, `0`) ... offset, default value is 0
     + limit (optional, number, `10`) ... limit, default value is 10
@@ -124,12 +301,45 @@ The main OSGI modules:
 
 
 
-## Parent [/v1/products/parent?id={id1}&id={id2}]
 
-+ id
+# Group Parent & Child Calls
+
+Products returned by the AO Explin API can also contain relationships to other products within this AO Campaign System.
+This information is stored as a number of arrays within the JSON objects. There are possible "parent" arrays and "child" arrays depending on the product itself.
+The relationship of the Parent/Child is also contained with the JSON. 
+_i.e. A hotel could have many children, and the relationship between the parents and the children could be different.
+A hotel cold have children that are rooms or children that are restaurants or spas._
+
+It is normal for each of the contained Parent and Child Arrays to contain 
++ _ObjectType_ = the name of the relationship between parent(s) and child(ren) of the array
++ _ObjectTypeID_ = a unique reference for the relationship between parent(s) and child(ren) of the array
++ _Product IDs_ = a list of products realted
++ _Description_ = the main description for each of the Product IDs
++ _SKUID_ = a unique number associated to the product (depreciating soon)
+    
+    
+
+## Parent [/v1/products/parent?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
+
+It is possible to request the parents of one or more products by using Product IDs
+
+<table style="width: 100%; margin: 12px 0 0 0;">
+<tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
+<tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
+<tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
+</table>
+
+
 
 + Parameters
-    + id (optional, string, `AA001125`) ... List of golden product IDs as key value array
+    + id1 (required, string, `AA000002FG`) ... product id
+    + id2 (required, string, `AA0026262`) ... product id
+    + id3 (required, string, `AA002352525`) ... product id
+    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
+    + profilename (optional, string, `Hotel`) ... apply profile to product
+
 
 ### Get Parent [GET]
 + Request
@@ -145,12 +355,24 @@ The main OSGI modules:
             [{"Geo Latitude":30.68932,"aoCode":"AA001124"}]
 
 
-## Children [/v1/products/children?id={id1}&id={id2}]
+## Children [/v1/products/children?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
 
-+ id
+It is possible to request the parents of one or more products by using Product IDs
+
+<table style="width: 100%; margin: 12px 0 0 0;">
+<tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
+<tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
+<tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
+</table>
 
 + Parameters
-    + id (optional, string, `AA001125`) ... List of golden product IDs as key value array
+    + id1 (required, string, `AA000002FG`) ... product id
+    + id2 (required, string, `AA0026262`) ... product id
+    + id3 (required, string, `AA002352525`) ... product id
+    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
+    + profilename (optional, string, `Hotel`) ... apply profile to product
 
 ### Get Children [GET]
 + Request
@@ -168,12 +390,24 @@ The main OSGI modules:
 
 
 
-## Parent And Children [/v1/products/parentAndChildren?id={id1}&id={id2}]
+## Parent And Children [/v1/products/parentandchildren?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
 
-+ id
+It is possible to request the both the parents and children of one or more products by using Product IDs
+
+<table style="width: 100%; margin: 12px 0 0 0;">
+<tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
+<tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
+<tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
+</table>
 
 + Parameters
-    + id (optional, string, `AA001125`) ... List of golden product IDs as key value array
+    + id1 (required, string, `AA000002FG`) ... product id
+    + id2 (required, string, `AA0026262`) ... product id
+    + id3 (required, string, `AA002352525`) ... product id
+    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
+    + profilename (optional, string, `Hotel`) ... apply profile to product
 
 ### Get Parent And Children [GET]
 + Request
@@ -188,13 +422,10 @@ The main OSGI modules:
 
             [{"Geo Latitude":30.68932,"aoCode":"AA001124"},[{"Geo Latitude":33.68932,"aoCode":"AA001127","parent_id":"AA001125"}]]
 
-## Available Bundles [/AvailableBundles]
 
-### Get Available Bundles [GET]
 
-+ Response 200 (application/json)
+# Group Delta Change Calls
 
-        ["fake.bundle.id"]
 
 ## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&profile={profileName}&offset={offset}&limit={limit}]
 
@@ -259,8 +490,151 @@ This call is to capture the Change Management of Products and the objects betwee
         }
 
 
-## Geo Hierarchy [/v1/products/hierarchy]
-This service returns the full geo hierarchy.
+
+# Group Profile Calls
+
+Only the fields defined with the profiles, will be made available and any superflous fields and data will be removed.
+
+
+
+
+
+
+
+## Profile Manager [/profilemanager/{profilename}]
+The following calls allow for the creation, review and deletion of _Profiles_.
+
+<table style="width: 100%; margin: 12px 0 0 0;">
+<tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
+<tr><td colspan="2"><strong>name</strong> - only required when specifing <i>delete</i></td></tr>
+<tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
+<tr><td style="padding-right: 40px;"><strong>-</strong></td></tr>
+</table>
+
+
+
+### Get All Profiles [GET]
+List all the current profiles by profilename
++ Response 200 (application/json)
+
+        {
+            "AO_JSON_TYPE": "profile",
+           "name": "Hotel",
+        "filter": {
+        "product": [
+            "Description",
+            "GTA_Rating",
+            "Product__Type"
+        ],
+        "copy": [
+            "Copy__Name",
+            "Copy__Text"
+        ]
+        },
+        "keyRename": {
+        "product": {
+             "GTA_Rating": "Rating",
+             "Product__Type": "ProductType"
+        },
+        "copy": {
+             "Copy__Name": "CopyName",
+             "Copy__Text": "Text"
+        }
+        },
+        "valueRename":  {
+            "copy": {
+                "Copy__Name": {
+                    "ntm.product.URL.en":"Product URL"
+            }
+        }
+        }
+        }
+        
+
+        
+### Add New Profile [POST]
+If the profilename already exists then overwrite the existing profile
++ Request 
+
+        {
+           "name": "Hotel",
+        "filter": {
+        "product": [
+            "Description",
+            "GTA_Rating",
+            "Product__Type"
+        ],
+        "copy": [
+            "Copy__Name",
+            "Copy__Text"
+        ]
+        },
+        "keyRename": {
+        "product": {
+             "GTA_Rating": "Rating",
+             "Product__Type": "ProductType"
+        },&
+        "copy": {
+             "Copy__Name": "CopyName",
+             "Copy__Text": "Text"
+        }
+        },
+        "valueRename":  {
+            "copy": {
+                "Copy__Name": {
+                    "ntm.product.URL.en":"Product URL"
+            }
+        }
+        }
+        }
+        
++ Response 204
+
+### Delete Profile [DELETE]
+
+Specify which profiles should be deleted using the profilename
+
++ Parameters
+    + name (required, string, `tour`) ... filter name
+    
++ Response 204
+
+
+
+## Example Product Call with Profile [/v1/products?id=id1&profile={profilename}]
+
++ Parameters
+    + id1 (required, string, `AA000002FG`) ... product id (document id)
+    + profilename (optional, string, `Hotel`) ... apply profile to products
+
+
+
+### Example Call [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "Product__id": "AA000000",
+                "Country": "France",
+                "City":"Pontault-Combault",
+                "City__Code": "FPC",
+                "Tour__Date":"2015-01-01",
+                "Location": ""
+            }   
+        ]
+
+
+
+# Group Spacial Hierarchy Calls
+
+## Product Spacial Hierarchy [/v1/products/hierarchy]
+This service returns a large JSON documentst that repesents the spatial relationship of all products from a defined Product ID.
+
+This could represent the relationship of stores to brands, departments within stores, products with in departments.
+
+Within a Travel context, this can be a geographic heirachy of relationships that map countries, regions, citys and locations into percieved representations of the planet.
+
 
 ### Get Hierarchy [GET]
 
@@ -361,108 +735,19 @@ This service returns the full geo hierarchy.
         "SKU__ID":"377618"
         }
 
-## Bundle Filter [/profileManager/{name}]
-The Filter will keep only fields that specified in request. (others will be stripped).
-+ name - need only when delete
- 
-### Get All Filters [GET]
+
+
+        
+        
+        
+# Group Bundles Calls
+
+Bundles are small OSGI compatable 
+
+## Available Bundles [/AvailableBundles]
+
+### Get Available Bundles [GET]
 
 + Response 200 (application/json)
 
-        {
-            "AO_JSON_TYPE": "profile",
-           "name": "Hotel",
-        "filter": {
-        "product": [
-            "Description",
-            "GTA_Rating",
-            "Product__Type"
-        ],
-        "copy": [
-            "Copy__Name",
-            "Copy__Text"
-        ]
-        },
-        "keyRename": {
-        "product": {
-             "GTA_Rating": "Rating",
-             "Product__Type": "ProductType"
-        },
-        "copy": {
-             "Copy__Name": "CopyName",
-             "Copy__Text": "Text"
-        }
-        },
-        "valueRename":  {
-            "copy": {
-                "Copy__Name": {
-                    "ntm.product.URL.en":"Product URL"
-            }
-        }
-        }
-        }
-        
-### Add New Filters [POST]
-If the filter already exists then overwritten
-+ Request 
-
-        {
-           "name": "Hotel",
-        "filter": {
-        "product": [
-            "Description",
-            "GTA_Rating",
-            "Product__Type"
-        ],
-        "copy": [
-            "Copy__Name",
-            "Copy__Text"
-        ]
-        },
-        "keyRename": {
-        "product": {
-             "GTA_Rating": "Rating",
-             "Product__Type": "ProductType"
-        },
-        "copy": {
-             "Copy__Name": "CopyName",
-             "Copy__Text": "Text"
-        }
-        },
-        "valueRename":  {
-            "copy": {
-                "Copy__Name": {
-                    "ntm.product.URL.en":"Product URL"
-            }
-        }
-        }
-        }
-        
-+ Response 204
-
-### Delete Filter [DELETE]
-
-+ Parameters
-    + name (required, string, `tour`) ... filter name
-    
-+ Response 204
-
-## Example Call products with filter [/v1/products?profile={profileName}]
-
-+ Parameters
-    + profileName (optional, string, `Hotel`) ... apply profile to products
-
-### Apply Filters [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "Product__id": "AA000000",
-                "Country": "France",
-                "City":"Pontault-Combault",
-                "City__Code": "FPC",
-                "Tour__Date":"2015-01-01",
-                "Location": ""
-            }   
-        ]
+        ["fake.bundle.id"]
