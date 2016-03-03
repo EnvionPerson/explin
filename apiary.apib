@@ -17,7 +17,7 @@
 
 
 ## Purpose
-The AO Explin API is designed to provide internal AO projects and partners with a set of API calls to enable the construction of products and associated assests for websites, applications or similar, for integration into existing systems of the creation of new channels.  
+The AO Explin API is designed to provide internal AO projects and partners with a set of API calls to enable the construction of products and associated assets for websites, applications or similar, for integration into existing systems of the creation of new channels.  
 For further information please refer to the www.aouk.co.uk or www.ao-americas.com websites.
 
 
@@ -45,7 +45,7 @@ The API is divided into several categories
 - _Search_ - Based upon defined fields
 - _Deltas_ - Changes in content and datasets
 - _Batch_ - Calling of data en mass
-- _Schema_ - Calls relating to existance of custom metadata and realtionships
+- _Schema_ - Calls relating to existence of custom metadata and relationships
 
 
 ## Technology stack
@@ -73,11 +73,11 @@ For example, if the user agent uses Aladdin as the username and OpenSesame as th
 ## OSGI Modules (Bundles)
 
 The AO Explin API has the ability to call extra OSGI Modules processing routines that are called _**bundles**_ to augment the dataset being returned,
-based upon third party systems. i.e. CRMs, Pricing and Availabilty, Stock and Distribution systems or other business processes as defined.
+based upon third party systems. i.e. CRMs, Pricing and Availability, Stock and Distribution systems or other business processes as defined.
 
 It therefore means that different AO UK Ltd customers could have a different set of _**bundles**_ to call upon from within the different supplied systems.
 
-It is possible to call one or more bundles in  order, known as a _**OSGIChain**_ seperated by a comma    
+It is possible to call one or more bundles in  order, known as a _**OSGIChain**_ separated by a comma    
 _i.e. OSGiChain=customer.add-10%-to-price.id, customer.remove-short-lifespan-products.id_
 <!--The key OSGI modules:
 - bundle-manager (registry 'Chain' modules in AO Explin API)  
@@ -141,7 +141,7 @@ Typical examples and their meanings:
 
 ## Media Type in Header
 
-AO Explin API supports JSON format which needs to be specified within the header of the API calll
+AO Explin API supports JSON format which needs to be specified within the header of the API call
 
     HTTP/1.1 200 OK
     Server: aws.aouk.co.uk
@@ -149,7 +149,7 @@ AO Explin API supports JSON format which needs to be specified within the header
     Content-Type: application/json; charset=utf-8
     Content-Length: 2004
     Status: 200 OK
-    Cache-Control: public, max-age=60, s-maxage=60
+    Cache-Control: public, max-age=60, s-manage=60
 
 How is it structured? use X-AO for the start of the headers i.e.  
 
@@ -191,15 +191,15 @@ General system calls regarding the AO Explin API
 
 ## ProductByDocID [/v1/products/ids?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
 
-The *_product_* call returns 1 or more products and the associated metadata and objects, based upon the _Product ID_ (sometimes refered to as the SKU Number) of the product(s).
+The *_product_* call returns 1 or more products and the associated metadata and objects, based upon the _Product ID_ (sometimes referred to as the SKU Number) of the product(s).
 
-This call returns the data based upon the fact the _Document ID_ of the JSON objects matches the _Product ID_, therefore returns the information at an optimim
+This call returns the data based upon the fact the _Document ID_ of the JSON objects matches the _Product ID_, therefore returns the information at an optimum
 
 <table style="width: 100%; margin: 12px 0 0 0;">
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
 <tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
@@ -264,11 +264,11 @@ Performs a search of the AO Campaign system for products based upon metadata. Pl
 
 <tr><td><strong>OR</strong></td></tr>
 
-<tr><td><strong>key => value_array</strong> - the key refers to the name of the field to be searched upon where the value refers to the content items of the field seperated by a comma
+<tr><td><strong>key => value_array</strong> - the key refers to the name of the field to be searched upon where the value refers to the content items of the field separated by a comma
 <i>i.e. city=Sydney, Toronto, New York</i></td></tr>
 
 <tr><td><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles than can be applied to augment the data</td></tr>
 <tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename field within the dataset</td></tr>
 </table>
 
@@ -338,7 +338,7 @@ A hotel cold have children that are rooms or children that are restaurants or sp
 It is normal for each of the contained Parent and Child Arrays to contain 
 + _ObjectType_ = the name of the relationship between parent(s) and child(ren) of the array
 + _ObjectTypeID_ = a unique reference for the relationship between parent(s) and child(ren) of the array
-+ _Product IDs_ = a list of products realted
++ _Product IDs_ = a list of products related
 + _Description_ = the main description for each of the Product IDs
 + _SKUID_ = a unique number associated to the product (depreciating soon)
     
@@ -352,7 +352,7 @@ It is possible to request the parents of one or more products by using Product I
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
 <tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
@@ -388,7 +388,7 @@ It is possible to request the parents of one or more products by using Product I
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
 <tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
@@ -423,7 +423,7 @@ It is possible to request the both the parents and children of one or more produ
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be appled to augment the data</td></tr>
+<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
 <tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
@@ -456,7 +456,7 @@ It is possible to request the both the parents and children of one or more produ
 
 This call is to capture the Change Management of Products and their associated objects between two points in time.
 
-All variables are optional, and usign _offset_ and _limit_ it is possible to page through the result dataset 
+All variables are optional, and using _offset_ and _limit_ it is possible to page through the result dataset 
 
 + _startDateTime_ expressed as [yyyy, MM, dd, HH, mm, ss]
 + _endDateTime_ expressed as [yyyy, MM, dd, HH, mm, ss]
@@ -533,7 +533,7 @@ The following calls allow for the creation, review and deletion of _Profiles_.
 
 <table style="width: 100%; margin: 12px 0 0 0;">
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
-<tr><td colspan="2"><strong>name</strong> - only required when specifing <i>delete</i> otherwise not required</td></tr>
+<tr><td colspan="2"><strong>name</strong> - only required when specifying <i>delete</i> otherwise not required</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
 <tr><td style="padding-right: 40px;"><strong>-</strong></td></tr>
 </table>
@@ -656,11 +656,11 @@ Specify which profiles should be deleted using the profilename
 # Group Hierarchy Calls
 
 ## Product Hierarchy [/v1/products/hierarchy]
-This service returns a large JSON documentst that repesents the spatial relationship of all products from a defined Product ID.
+This service returns a large JSON documents that represents the spatial relationship of all products from a defined Product ID.
 
 This could represent the relationship of stores to brands, departments within stores, products with in departments.
 
-Within a Travel context, this can be a geographic heirachy of relationships that map countries, regions, citys and locations into percieved representations of the planet.
+Within a Travel context, this can be a geographic hierarchy of relationships that map countries, regions, citys and locations into perceived representations of the planet.
 
 
 ### Get Hierarchy [GET]
@@ -769,9 +769,9 @@ Within a Travel context, this can be a geographic heirachy of relationships that
         
 # Group Bundle Calls
 
-Bundles are small OSGI compatable components that can be called in a OSGIChain when making other AO Explin API calls.
+Bundles are small OSGI compatible components that can be called in a OSGIChain when making other AO Explin API calls.
 
-Each AO UK Ltd customer may have different bundles avaiable them, and can purchase custom bundles from AO UK Ltd.
+Each AO UK Ltd customer may have different bundles available them, and can purchase custom bundles from AO UK Ltd.
 
 ## Available Bundles [/AvailableBundles]
 
@@ -779,4 +779,4 @@ Each AO UK Ltd customer may have different bundles avaiable them, and can purcha
 
 + Response 200 (application/json)
 
-        ["fake.bundle.id"]
+        ["fake.bundle.id"]Final
