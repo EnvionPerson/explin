@@ -1,3 +1,5 @@
+FORMAT: 1A
+HOST: http://server.aouk.co.uk/services/rest
 # AO Explin API
 
 <style type = "text/css" >
@@ -452,7 +454,7 @@ It is possible to request the both the parents and children of one or more produ
 # Group Delta Change Calls
 
 
-## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&profile={profilename}&offset={offset}&limit={limit}]
+## Delta Changes [/v1/products/deltas?startDateTime={startDateTime}&endDateTime={endDateTime}&profile={profileName}&offset={offset}&limit={limit}]
 
 This call is to capture the Change Management of Products and their associated objects between two points in time.
 
@@ -460,7 +462,7 @@ All variables are optional, and using _offset_ and _limit_ it is possible to pag
 
 + _startDateTime_ expressed as [yyyy, MM, dd, HH, mm, ss]
 + _endDateTime_ expressed as [yyyy, MM, dd, HH, mm, ss]
-+ _profilename_
++ _profileName_
 + _offset_ the starting point to return the dataset
 + _limit_ the number of results to return
 
