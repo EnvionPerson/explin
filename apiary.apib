@@ -165,7 +165,7 @@ Stateless, but with a date/time stamp to allow control and reference. Some calls
 # Group AO Explin API System Calls
 General system calls regarding the AO Explin API 
 
-## ListServices [/services/rest]
+## ListServices [/]
 
 
 
@@ -191,7 +191,7 @@ General system calls regarding the AO Explin API
 # Group Product Calls
 
 
-## ProductByDocID [/v1/products/ids?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
+## ProductByDocID [/v1/products/ids?id={id1}&id={id2}&id={id3}&profile={profilename}]
 
 The *_product_* call returns 1 or more products and the associated metadata and objects, based upon the _Product ID_ (sometimes referred to as the SKU Number) of the product(s).
 
@@ -211,7 +211,6 @@ This call returns the data based upon the fact the _Document ID_ of the JSON obj
     + id1 (required, string, `AA000002FG`) ... product id (document id)
     + id2 (required, string, `AA0026262`) ... product id (document id)
     + id3 (required, string, `AA002352525`) ... product id (document id)
-    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
     + profilename (optional, string, `Hotel`) ... apply profile to product
 
 ### Get ProductByDocID [GET]
@@ -254,7 +253,7 @@ This call returns the data based upon the fact the _Document ID_ of the JSON obj
         
         
 
-## Products [/v1/products?OSGIChain={bundlename}&city={city}&offset={offset}&limit={limit}&profile={profileName}]
+## Products [/v1/products?OSGIChain={bundlename}&City={city}&offset={offset}&limit={limit}&profile={profileName}]
 
 Performs a search of the AO Campaign system for products based upon metadata. Please note that the source database can be indexed to increase performance of the speed of the returned dataset
 
@@ -346,7 +345,7 @@ It is normal for each of the contained Parent and Child Arrays to contain
     
     
 
-## Parent [/v1/products/parent?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
+## Parent [/v1/products/parent?id={id1}&id={id2}&id={id3}]
 
 It is possible to request the parents of one or more products by using Product IDs
 
@@ -354,8 +353,6 @@ It is possible to request the parents of one or more products by using Product I
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
-<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
 
@@ -364,8 +361,7 @@ It is possible to request the parents of one or more products by using Product I
     + id1 (required, string, `AA000002FG`) ... product id
     + id2 (required, string, `AA0026262`) ... product id
     + id3 (required, string, `AA002352525`) ... product id
-    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
-    + profilename (optional, string, `Hotel`) ... apply profile to product
+    
 
 
 ### Get Parent [GET]
@@ -382,7 +378,7 @@ It is possible to request the parents of one or more products by using Product I
             [{"Geo Latitude":30.68932,"aoCode":"AA001124"}]
 
 
-## Children [/v1/products/children?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
+## Children [/v1/products/children?id={id1}&id={id2}&id={id3}]
 
 It is possible to request the parents of one or more products by using Product IDs
 
@@ -390,16 +386,12 @@ It is possible to request the parents of one or more products by using Product I
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
-<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
 + Parameters
     + id1 (required, string, `AA000002FG`) ... product id
     + id2 (required, string, `AA0026262`) ... product id
     + id3 (required, string, `AA002352525`) ... product id
-    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
-    + profilename (optional, string, `Hotel`) ... apply profile to product
 
 ### Get Children [GET]
 + Request
@@ -417,7 +409,7 @@ It is possible to request the parents of one or more products by using Product I
 
 
 
-## Parent And Children [/v1/products/parentandchildren?id={id1}&id={id2}&id={id3}&bundlename={bundlename}&profile={profilename}]
+## Parent And Children [/v1/products/parentAndChildren?id={id1}&id={id2}&id={id3}]
 
 It is possible to request the both the parents and children of one or more products by using Product IDs
 
@@ -425,16 +417,12 @@ It is possible to request the both the parents and children of one or more produ
 <tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
 <tr><td colspan="2"><strong>id(s)</strong> - one or more Product IDs (string)</td></tr>
 <tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>bundlename(s)</strong> - one or more bundles (string) than can be applied to augment the data</td></tr>
-<tr><td style="padding-right: 40px;"><strong>profilename</strong> - to filter and rename fields within the dataset as defined in the profilename (string)</td></tr>
 </table>
 
 + Parameters
     + id1 (required, string, `AA000002FG`) ... product id
     + id2 (required, string, `AA0026262`) ... product id
     + id3 (required, string, `AA002352525`) ... product id
-    + bundlename (optional, string, `customer.discount_5%.id, customer.rerank_offers.id`) ... apply profile to product
-    + profilename (optional, string, `Hotel`) ... apply profile to product
 
 ### Get Parent And Children [GET]
 + Request
@@ -602,7 +590,7 @@ If the profilename already exists then overwrite the existing profile
         "product": {
              "GTA_Rating": "Rating",
              "Product__Type": "ProductType"
-        },&
+        },
         "copy": {
              "Copy__Name": "CopyName",
              "Copy__Text": "Text"
@@ -630,7 +618,7 @@ Specify which profiles should be deleted using the profilename
 
 
 
-## Example Product Call with Profile [/v1/products?id=id1&profile={profilename}]
+## Example Product Call with Profile [/v1/products?id={id1}&profile={profilename}]
 
 + Parameters
     + id1 (required, string, `AA000002FG`) ... product id (document id)
