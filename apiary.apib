@@ -518,17 +518,8 @@ Only the fields defined with the profiles, will be made available and any superf
 
 
 
-## Profile Manager [/services/profileManager/{profilename}]
+## Profile Manager [/services/profileManager]
 The following calls allow for the creation, review and deletion of _Profiles_.
-
-<table style="width: 100%; margin: 12px 0 0 0;">
-<tr><td colspan="2"><strong>Required Parameters</strong></td></tr>
-<tr><td colspan="2"><strong>profilename</strong> - only required when specifying <i>deletea c</i> otherwise not required</td></tr>
-<tr><td colspan="2"><strong>Optional Parameters</strong></td></tr>
-<tr><td style="padding-right: 40px;"><strong>-</strong></td></tr>
-</table>
-
-
 
 ### Get All Profiles [GET]
 List all the current profiles by profilename
@@ -607,12 +598,14 @@ If the profilename already exists then overwrite the existing profile
         
 + Response 204
 
+## Delete Profile [/services/profileManager/{profilename}]
+
 ### Delete Profile [DELETE]
 
 Specify which profiles should be deleted using the profilename
 
 + Parameters
-    + name (required, string, `tour`) ... filter name
+    + profilename (required, string, `tour`) ... filter name
     
 + Response 204
 
