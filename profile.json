@@ -11,7 +11,9 @@
         "copy": [
             "Copy__Name",
             "Copy__Text"
-        ]
+        ],
+        "prices": [],
+        "pictures": []
     },
     "productRowSelection":{
         "Product__Type": "495"
@@ -25,12 +27,16 @@
              "Copy__Name": "CopyName",
              "Copy__Text": "Text"
         }
+        "prices": {},
+        "pictures": {}
     },
     "valueRename":  {
             "copy": {
                 "Copy__Name": {
                     "ntm.product.URL.en":"Product URL"
             }
-        }
+        },
+        "prices": {},
+        "pictures": {}
     }
 }
