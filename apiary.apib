@@ -764,19 +764,88 @@ Each AO UK Ltd customer may have different bundles available them, and can purch
 
         ["fake.bundle.id"]
 
-# Group Indexes and Views
+# Group Views Managment
 
-(Re)Create Indexes and Views
-
-## Verify Indexes [/verifyIndexes]
-
-### Get Verify Indexes [GET]
-
-+ Response 200 (application/json)
-
+(Re)Create Views
 
 ## Verify Views [/verifyViews]
 
 ### Get Verify Views [GET]
 
 + Response 200 (application/json)
+
+# Group Index Managment
+
+## Indexes [/index]
+- *online*: the index is ready(built on 100%);
+- *pending*: the index is building or created;
+
+### Get All Indexes [GET]
+
++ Response 200 (application/json)
+
+        [ {"field":"AO_JSON_TYPE","status":"online"},
+        {"field":"State__Code","status":"online"}, 
+        {"field":"Test6","status":"online"}, 
+        {"field":"Test5","status":"online"}, 
+        {"field":"newTest1","status":"online"}, 
+        {"field":"Country","status":"online"}, 
+        {"field":"Product__Type","status":"online"},
+        {"field":"City","status":"online"}, 
+        {"field":"newTest3","status":"online"}, 
+        {"field":"Test","status":"online"}, 
+        {"field":"TYPE","status":"pending"}]
+
+## Verify Indexes [/index/verify]
+
+### Get Verify Indexes [GET]
+
++ Response 200 (application/json)
+
+## Create New Indexes [/index/create?field={field1}&field={field2}]
+
++ Parameters
+    + field1 (required, string, `City`) ... field name (List)
+    
+### Create Indexes [GET]
+
++ Response 201 (application/json)
+
+        Creating
+
++ Response 400
+
+        {
+            "City": {"msg", "ALREADY EXIST"},
+            "TYPE": {"msg", "SYSTEM IS BUZY:CANNOT CREATE INDEX, TRY LATER"}
+        }
+
++ Response 409
+
+## Drop Indexes [/index/drop?field={field1}&field={field2}]
+
++ Parameters
+    + field1 (required, string, `City`) ... field name (List)
+
+### Drop Indexes [GET]
+
++ Response 200 (application/json)
+
+        {"field1": "deleted", "field1": "NOT FOUND"}
+
+## Build Index [/index/build?field={field}]
+
++ Parameters
+    + field (required, string, `City`) ... field name (String)
+
+### Build Index [GET]
+
++ Response 200 (application/json)
+
+        Building...
+
++ Response 400
+
+        {"City": {"msg", "ALREADY BUILT"}}
+
++ Response 409
