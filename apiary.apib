@@ -634,7 +634,32 @@ Specify which profiles should be deleted using the profilename
             }   
         ]
 
+## Hotel Call with Geo coordinates [/v1/products?latitude={lat}&longitude={long}&radius={radius}&dateFrom={dateFrom}&dateTo={dateTo}&starRating={starRating}&profile={profile}]
 
++ Parameters 
+    + lat (required, string, `51.50853`) ... geo latitude
+    + long (required, string, `-0.12574`) ... geo longitude
+    + radius (required, int, `50`) ... radius (km)
+    + dateFrom (optional, string, `2017/01/01`) ... [yyyy/MM/dd]
+    + dateTo (optional, string, `2017/01/01`) ... [yyyy/MM/dd]
+    + starRating (optional, int, `3`) ... Quality Rating
+    + profile (optional, string, `Hotels`) ... profile
+    
+### Geo Hotel Call [GET]
+
++ Response 200 (application/json)
+
+        [
+        {
+                "Product__id": "AA000000",
+                "Country": "France",
+                "City":"Pontault-Combault",
+                "City__Code": "FPC",
+                "Tour__Date":"2015-01-01",
+                "Location": ""
+            }   dded
+        ]
+    
 
 # Group Hierarchy Calls
 
